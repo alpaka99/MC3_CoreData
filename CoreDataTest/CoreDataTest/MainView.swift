@@ -92,8 +92,9 @@ struct MainView: View {
         
         item.state = randomNumber
         
-        
-        try? managedObjectContext.save()
+        if managedObjectContext.hasChanges {
+            try? managedObjectContext.save()
+        }
     }
     
     
@@ -104,37 +105,31 @@ struct MainView: View {
             managedObjectContext.delete(item)
         }
         
-        try? managedObjectContext.save()
+        if managedObjectContext.hasChanges {
+            try? managedObjectContext.save()
+        }
     }
     
-    func changeIsItemDeleted() {
-        
-    }
-    
-    func changeIsItemRotten() {
-        
-    }
     
     func changeItemToRottenStatus(target: Item) {
-        for item in items {
-            if target == item {
-                item.status = .Eaten
-                break
-            }
-        }
-        
-        try? managedObjectContext.save()
+//        for item in items {
+//            if target == item {
+//                item.status = .Eaten
+//                break
+//            }
+//        }
+//        try? managedObjectContext.save()
     }
     
     func changeItemToEatenStatus(target: Item) {
-        for item in items {
-            if target == item {
-                item.status = .Rotten
-                break
-            }
-        }
-        
-        try? managedObjectContext.save()
+//        for item in items {
+//            if target == item {
+//                item.status = .Rotten
+//                break
+//            }
+//        }
+//
+//        try? managedObjectContext.save()
     }
 }
 
